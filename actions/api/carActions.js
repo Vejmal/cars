@@ -5,6 +5,8 @@ class NoteActions {
   async createCar(req, res){
     const mark = req.body.mark;
     const model = req.body.model;
+    const engineCapacity = req.body.engineCapacity;
+    const horsePower = req.body.horsePower;
 
     let car;
 
