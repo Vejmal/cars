@@ -9,7 +9,7 @@ class NoteActions {
     let car;
 
     try {
-      const car = new Note({mark, model})
+      const car = new Note({mark, model, engineCapacity, horsePower})
       await car.save()
     } catch (err) {
       return res.status(422).json({message: err.message})
@@ -41,10 +41,14 @@ class NoteActions {
     const id = req.params.id;
     const mark = req.body.mark;
     const model = req.body.model;
+    const engineCapacity = req.body.engineCapacity;
+    const horsePower = req.body.horsePower;
 
     const car = await Note.findOne({_id: id})
     car.mark = mark;
     car.model = model;
+    car.engineCapacity = engineCapacity;
+    car.horsePower = horsePower;
 
     res.status(201).json(car)
   }
