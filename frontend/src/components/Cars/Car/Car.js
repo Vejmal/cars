@@ -2,8 +2,6 @@ import React from 'react';
 
 function Car(props) {
 
-  props.onDelete(props.id);
-
   return (
     <div className='car mark'>
           <p>{props.mark}</p>
