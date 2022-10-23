@@ -4,6 +4,11 @@ Required modules:
   - mongoose
 
 How to start:
-  - turn on mongodb (localhost)
-  - node index.js
-  - use postman to check endpoints
+  - backend
+    - turn on mongodb (localhost)
+    - node index.js
+    - use postman to check endpoints
+  - frontend
+    - npm start
+ 
+
