@@ -2,6 +2,7 @@ Required modules:
   - express
   - mongodb
   - mongoose
+  - react
 
 How to start:
   - backend
