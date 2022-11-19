@@ -3,7 +3,7 @@ const Note = require('../../db/models/car')
 class NoteActions {
   //save notes
   async createCar(req, res){
-    const mark = req.body.mark;
+    const brand = req.body.brand;
     const model = req.body.model;
     const engineCapacity = req.body.engineCapacity;
     const horsePower = req.body.horsePower;
@@ -11,7 +11,7 @@ class NoteActions {
     let car;
 
     try {
-      const car = new Note({mark, model, engineCapacity, horsePower})
+      const car = new Note({brand, model, engineCapacity, horsePower})
       await car.save()
     } catch (err) {
       return res.status(422).json({message: err.message})
@@ -41,13 +41,13 @@ class NoteActions {
   //modify notes
   async updateCar(req, res){
     const id = req.params.id;
-    const mark = req.body.mark;
+    const brand = req.body.brand;
     const model = req.body.model;
     const engineCapacity = req.body.engineCapacity;
     const horsePower = req.body.horsePower;
 
     const car = await Note.findOne({_id: id})
-    car.mark = mark;
+    car.brand = brand;
     car.model = model;
     car.engineCapacity = engineCapacity;
     car.horsePower = horsePower;

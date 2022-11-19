@@ -8,9 +8,19 @@ function Car(props) {
     setShowDesc(!showDesc)
   }
 
+  const editCarHandler = () => {
+    props.onEdit({
+      brand: props.brand,
+      model: props.model,
+      engineCapacity: props.engineCapacity,
+      horsePower: props.horsePower,
+      _id: props.id,
+    });
+  }
+
   return (
-    <div className='car mark'>
-          <p onClick={toggleDesc}>{props.mark}</p>
+    <div className='car brand'>
+          <p onClick={toggleDesc}>{props.brand}</p>
           {showDesc && (
             <>
             <div className='car model'></div>
@@ -21,7 +31,7 @@ function Car(props) {
             <p>{props.horsePower}</p>
             </>
           )}
-          <button>edytuj</button>
+          <button onClick={editCarHandler}>edytuj</button>
           <button className='delete' onClick={() => props.onDelete(props.id)}>usuń</button>
         </div>
   )
