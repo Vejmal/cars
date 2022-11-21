@@ -1,7 +1,7 @@
-const Note = require('../../db/models/car')
+const Car = require('../../db/models/car')
 
-class NoteActions {
-  //save notes
+class CarActions {
+  //save car
   async createCar(req, res){
     const brand = req.body.brand;
     const model = req.body.model;
@@ -11,7 +11,7 @@ class NoteActions {
     let car;
 
     try {
-      const car = new Note({brand, model, engineCapacity, horsePower})
+      const car = new Car({brand, model, engineCapacity, horsePower})
       await car.save()
     } catch (err) {
       return res.status(422).json({message: err.message})
@@ -19,11 +19,11 @@ class NoteActions {
     res.status(201).json(car)
   }
 
-  //get more than one notes
+  //get more than one cars
   async getAllCars(req, res){
     let doc;
     try {
-      doc = await Note.find({});
+      doc = await Car.find({});
     } catch (err) {
       return res.status(500).json({message: err.message})
     }
@@ -31,14 +31,14 @@ class NoteActions {
     res.status(200).json(doc);
   }
 
-  //get single notes
+  //get single car
   async getCar(req, res){
     const id = req.params.id;
-    const note = await Note.findOne({_id: id})
-    res.status(200).json(note)
+    const car = await Car.findOne({_id: id})
+    res.status(200).json(car)
   }
 
-  //modify notes
+  //modify cars
   async updateCar(req, res){
     const id = req.params.id;
     const brand = req.body.brand;
@@ -46,7 +46,7 @@ class NoteActions {
     const engineCapacity = req.body.engineCapacity;
     const horsePower = req.body.horsePower;
 
-    const car = await Note.findOne({_id: id})
+    const car = await Car.findOne({_id: id})
     car.brand = brand;
     car.model = model;
     car.engineCapacity = engineCapacity;
@@ -55,13 +55,13 @@ class NoteActions {
     res.status(201).json(car)
   }
 
-  //delete notes
+  //delete cars
   async deleteCar(req, res){
     const id = req.params.id;
-    await Note.deleteOne({_id: id})
+    await Car.deleteOne({_id: id})
 
     res.sendStatus(204);
   }
 }
 
-module.exports = new NoteActions()
+module.exports = new CarActions()

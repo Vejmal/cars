@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router();
 
-const noteActions = require('../actions/api/carActions')
+const CarActions = require('../actions/api/carActions')
 
 //get more than one car
-router.get('/cars', noteActions.getAllCars)
+router.get('/cars', CarActions.getAllCars)
 //get car
-router.get('/cars/:id', noteActions.getCar)
+router.get('/cars/:id', CarActions.getCar)
 //save
-router.post('/cars', noteActions.createCar)
+router.post('/cars', CarActions.createCar)
 //modify
-router.put('/cars/:id', noteActions.updateCar)
+router.put('/cars/:id', CarActions.updateCar)
 //delete
-router.delete('/cars/:id', noteActions.deleteCar)
+router.delete('/cars/:id', CarActions.deleteCar)
 
 module.exports = router;
