@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './Cars.css';
 import Car from './Car/Car';
 import NewCar from './NewCar/NewCar';
@@ -10,31 +11,29 @@ class Cars extends React.Component {
     super(props)
 
     this.state = {
-      cars: [
-        {
-          brand: 'Porsche',
-          model: '911',
-          engineCapacity: 1998,
-          horsePower: 450,
-          id: '2323'
-        },
-        {
-          brand: 'Porsche',
-          model: '911',
-          engineCapacity: 1998,
-          horsePower: 450,
-          id: '1122'
-        },
-      ],
+      cars: [],
+
+      //edit car
       showEditModal: false,
       editCar: {}
     };
   }
 
+  componentDidMount(){
+    this.fetchCars();
+  }
+
+  async fetchCars() {
+    const res = await axios.get('http://localhost:3001/api/cars');
+    const cars = res.data;
+
+    this.setState({ cars });
+    console.log(res);
+  }
+
   deleteCar(id){
-    console.log('Removing car id:', id);
     const cars = [...this.state.cars]
-                    .filter(car => car.id !== id);
+                    .filter(car => car._id !== id);
     this.setState({ cars });
   }
 
@@ -47,7 +46,7 @@ class Cars extends React.Component {
 
   editCar(car){
     const cars = [...this.state.cars];
-    const index = cars.findIndex(param => param.id === car.id);
+    const index = cars.findIndex(param => param._id === car._id);
     if(index >= 0){
       cars[index] = car;
       this.setState({ cars })
@@ -81,14 +80,15 @@ class Cars extends React.Component {
               model={this.state.editCar.model}
               engineCapacity={this.state.editCar.engineCapacity}
               horsePower={this.state.editCar.horsePower}
-              id={this.state.editCar.id}
+              id={this.state.editCar._id}
               onEdit={ car => this.editCar(car) } />
               <button onClick={() => this.toggleModal()}>Cancel</button>
           </Modal>
 
         {this.state.cars.map(car => (
           <Car
-            id={car.id}
+            key={car._id}
+            id={car._id}
             brand={car.brand}
             model={car.model}
             engineCapacity={car.engineCapacity}

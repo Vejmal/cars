@@ -31,8 +31,8 @@ function Car(props) {
             <p>{props.horsePower}</p>
             </>
           )}
-          <button onClick={editCarHandler}>edytuj</button>
-          <button className='delete' onClick={() => props.onDelete(props.id)}>usuń</button>
+          <button onClick={editCarHandler}>EDIT</button>
+          <button className='delete' onClick={() => props.onDelete(props.id)}>DELETE</button>
         </div>
   )
 }

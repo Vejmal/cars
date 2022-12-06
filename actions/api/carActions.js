@@ -40,7 +40,7 @@ class CarActions {
 
   //modify cars
   async updateCar(req, res){
-    const id = req.params.id;
+    const id = req.params._id;
     const brand = req.body.brand;
     const model = req.body.model;
     const engineCapacity = req.body.engineCapacity;

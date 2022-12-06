@@ -63,7 +63,7 @@ function NewCar(props) {
       <button onClick={() => addCar()}>Add Car</button>
     </div>
     ) : (
-      <button onClick={() => setShowForm(true)}>New Car</button>
+      <button onClick={() => setShowForm(true)}>Create car</button>
     )
   );
 }
